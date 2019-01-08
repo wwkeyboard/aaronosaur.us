@@ -1,7 +1,7 @@
 ---
 title: "Restart the Blog"
 date: 2019-01-07T11:00:00-06:00
-draft: true
+draft: false
 categories: [blog]
 ---
 
