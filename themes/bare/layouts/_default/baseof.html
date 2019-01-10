@@ -10,11 +10,36 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
   </head>
   <body class="w-100 sans-serif">
+      <header class="fl w-20">
+          &nbsp;
+      </header>
+      <header class="fl w-80">
+        <h1>{{ .Site.Title }}</h1>
+        <div id="nav">
+            <nav id="nav" class="nav justify-content-center">
+                {{ $showActiveNav := .Site.Params.showActiveNav }}
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }}
+                    {{ $active := "" }}
+                    {{ if eq $showActiveNav true }}
+                    {{ $isMenu := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                    {{ if or $isMenu (eq $currentPage.Title .Name) }}
+                        {{ $active = "nav-link-active" }}
+                    {{ end }}
+                    {{ end }}
+                    {{ $icon := printf "<i data-feather=\"%s\"></i>" .Pre }}
+                    {{ $text := print $icon " " .Name | safeHTML }}
+                    <a class="nav-link {{ $active }}" href="{{ .URL }}">{{ $text }}</a>
+                {{ end }}
+            </nav>
+        </div>
+      </header>
       <main>
-          <div class="fl w-20">
+        <div class="fl w-20">
             &nbsp;
-          </div>
+        </div>
         <div class="center measure-wide fl w-80">
+
         <!-- Code that all your templates share, like a header -->
         {{ block "main" . }}
         <!-- The part of the page that begins to differ between templates -->
