@@ -1,7 +1,7 @@
 ---
 title: "Ubuntu Cosmic Print Hangup"
 date: 2019-01-10T15:31:10-06:00
-draft: true
+draft: false
 ---
 
 This afternoon I had to sign some documents. They were provided
