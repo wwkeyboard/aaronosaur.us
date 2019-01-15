@@ -4,49 +4,28 @@
     <meta charset="utf-8">
     <title>{{ block "title" . }}
       {{ .Site.Title }}
-    {{ end }}</title>
+      {{ end }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ "tufte.css" | absURL }}" />
   </head>
-  <body class="w-100 sans-serif">
-      <header class="fl w-20">
-          &nbsp;
-      </header>
-      <header class="fl w-80">
-        <h1>{{ .Site.Title }}</h1>
-        <div id="nav">
-            <nav id="nav" class="nav justify-content-center">
-                {{ $showActiveNav := .Site.Params.showActiveNav }}
-                {{ $currentPage := . }}
-                {{ range .Site.Menus.main }}
-                    {{ $active := "" }}
-                    {{ if eq $showActiveNav true }}
-                    {{ $isMenu := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
-                    {{ if or $isMenu (eq $currentPage.Title .Name) }}
-                        {{ $active = "nav-link-active" }}
-                    {{ end }}
-                    {{ end }}
-                    {{ $icon := printf "<i data-feather=\"%s\"></i>" .Pre }}
-                    {{ $text := print $icon " " .Name | safeHTML }}
-                    <a class="nav-link {{ $active }}" href="{{ .URL }}">{{ $text }}</a>
-                {{ end }}
-            </nav>
-        </div>
-      </header>
-      <main>
-        <div class="fl w-20">
-            &nbsp;
-        </div>
-        <div class="center measure-wide fl w-80">
+  <body>
+    <article>
+      <section>
+        <h2><a href="{{"/" | absURL}}">{{ .Site.Title }}</a></h2>
+        <br />
+      </section>
 
-        <!-- Code that all your templates share, like a header -->
+      <section>
         {{ block "main" . }}
-        <!-- The part of the page that begins to differ between templates -->
+
         {{ end }}
+      </section>
+      <section>
         {{ block "footer" . }}
-        <!-- More shared code, perhaps a footer but that can be overridden if need be in  -->
+
         {{ end }}
-        </div>
-    </main>
+      </section>
+    </article>
+
   </body>
 </html>

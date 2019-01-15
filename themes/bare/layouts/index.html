@@ -1,8 +1,28 @@
 {{ define "main" }}
-<h1>Welcome!</h1>
+<section>
 
-<h2>{{ .Title }}</h2>
+<h1>{{ .Title }}</h1>
+
+
 {{ .Content }}
+</section>
+
+<nav id="nav">
+  {{ $showActiveNav := .Site.Params.showActiveNav }}
+  {{ $currentPage := . }}
+  {{ range .Site.Menus.main }}
+  {{ $active := "" }}
+  {{ if eq $showActiveNav true }}
+  {{ $isMenu := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+  {{ if or $isMenu (eq $currentPage.Title .Name) }}
+  {{ $active = "nav-link-active" }}
+  {{ end }}
+  {{ end }}
+  {{ $icon := printf "<i data-feather=\"%s\"></i>" .Pre }}
+  {{ $text := print $icon " " .Name | safeHTML }}
+  <a class="nav-link {{ $active }}" href="{{ .URL }}">{{ $text }}</a>
+  {{ end }}
+</nav>
 
 
 {{ end }}
