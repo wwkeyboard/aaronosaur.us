@@ -1,2 +1,4 @@
 name = "Bare"
 license = "MIT"
+
+staticDir = ["static"]
