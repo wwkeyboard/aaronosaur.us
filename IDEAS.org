@@ -1,0 +1,9 @@
+#+TITLE: Ideas for posts
+
+* org-mode for daily logging
+Daily "what I did" + org-capture
+
+* org-mode for notes - need some research for this
+It would be cool to talk about how to grow a series of notes for a
+project. Something like a Zettelkasten, but with a starting procedure
+better structured for org-mode.
